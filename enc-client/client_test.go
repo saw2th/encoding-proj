@@ -2,21 +2,16 @@ package client
 
 import "testing"
 
-func TestEasyStore(t *testing.T) {
-	cases := []struct {
-		in, want string
-	}{
-		{"Hello, world", "hello"},
-	}
+func TestStore(t *testing.T) {
 
-        var cl ClientDesc
+    var cl ClientStore
+    cl.Storage = make(map[string][]byte)
+    want := "Banana"
 
-	for _, c := range cases {
-                cl.Z = c.in
-		got := cl.EasyStore()
+    key, _ := cl.Store([]byte("123"), []byte(want))
+    content, _ := cl.Retrieve([]byte("123"), key)
 
-		if got != c.want {
-			t.Errorf("cl.EasyStore(%q) == %q, want %q", c.in, got, c.want)
-		}
-	}
+    if string(content) != want {
+    	t.Errorf("content was %q, want %q", content, want)
+    }
 }
