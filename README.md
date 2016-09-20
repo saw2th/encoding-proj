@@ -33,3 +33,8 @@ example return:
 ```
 {"Content":"abcde"}
 ```
+
+### To run test on client
+```
+go test github.com/saw2th/encoding-proj/enc-client
+```
